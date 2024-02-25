@@ -3,9 +3,9 @@
 Electrust is a take on e-voting that uses blockchain technology to ensure the integrity of the voting process. It is a project that was developed as part of the course "Senior Project" at the Gadjah Mada University.
 
 ## Members
-1. [Giga Hidjrika Aura Adkhy](www.linkedin.com/in/gigahidjrikaaa) - 21/479228/TK/52833
-2. [Ahmad Fauzan](www.linkedin.com/in/ahmadfauzan) - 21/474804/TK/52394
-3. [Johanes de Britto Krisna Arianta](www.linkedin.com/in/johanes-de-britto-krisna-arianta) - 21/473893/TK/52247
+1. [Giga Hidjrika Aura Adkhy](https://www.linkedin.com/in/gigahidjrikaaa) - 21/479228/TK/52833
+2. [Ahmad Fauzan](https://www.linkedin.com/in/ahmadfauzan) - 21/474804/TK/52394
+3. [Johanes de Britto Krisna Arianta](https://www.linkedin.com/in/johanes-de-britto-krisna-arianta) - 21/473893/TK/52247
 
 ## Technologies
 1. Mesh.JS (Cardano Library for JavaScript)
