@@ -45,3 +45,5 @@ We are developing a blockchain-based voting system that is more secure, transpar
 2. <https://lib.ui.ac.id/detail?id=20505644&lokasi=lokal>
 3. <https://ejournal.unp.ac.id/index.php/voteknika/article/view/113787>
 4. <https://uin-suka.ac.id/id/kolom/detail/24/sistem-blockchain-untuk-pemilu>
+
+&copy; 2022 Electrust. All rights reserved.
