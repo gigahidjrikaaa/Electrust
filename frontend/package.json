@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@meshsdk/core": "^1.5.11-beta.3",
-    "@meshsdk/react": "^1.1.10-beta.3"
-  }
-}
