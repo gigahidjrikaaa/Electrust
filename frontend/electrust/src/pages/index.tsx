@@ -10,14 +10,8 @@ import "aos/dist/aos.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  useEffect(() => {
-    AOS.init({
-      duration: 2000,
-    });    
-  }, []);
-
   return (
-    <div>     
+    <div data-aos="fade-down">     
       <Navbar />
       <div className="h-screen flex flex-col justify-center items-center text-justify">
         <h1 className="font-bold font-sans text-6xl">Electrust</h1>
