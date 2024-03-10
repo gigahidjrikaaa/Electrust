@@ -31,3 +31,10 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Color Palette */
+:root {
+  --primary-color: #FF0000;
+  --secondary-color: #00FF00;
+  --accent-color: #0000FF;
+}
