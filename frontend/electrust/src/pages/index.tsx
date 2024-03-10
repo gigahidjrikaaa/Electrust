@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Button } from "@nextui-org/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,6 +18,7 @@ export default function Home() {
         <h1 className="font-bold font-sans text-6xl">Electrust</h1>
         <p className="font-sans text-2xl">A secure and transparent voting system</p>
         <Image src="/logo.svg" className="justify-center text-center mt-12" alt="Electrust Logo" width={100} height={100} />
+        <Button color="primary" className="mb-12">Get Started</Button>
         <Footer />
       </div>
     </div>

@@ -18,8 +18,8 @@ const LoginPage = () => {
     };
 
     return (
-        <div>
-            <h1>Login</h1>
+        <div className='flex flex-col justify-center items-center h-screen'>
+            <h1 className='text-4xl my-10 uppercase font-bold'>Login</h1>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="email">Email:</label>
@@ -29,7 +29,7 @@ const LoginPage = () => {
                     <label htmlFor="password">Password:</label>
                     <input type="password" id="password" value={password} onChange={handlePasswordChange} />
                 </div>
-                <button type="submit">Login</button>
+                <button className='bg-blue-600 p-5 rounded-md' type="submit">Login</button>
             </form>
         </div>
     );

@@ -1,3 +1,4 @@
+import Button from '@/components/button';
 import Navbar from '@/components/navbar';
 import { useState } from 'react';
 
@@ -32,7 +33,8 @@ const RegisterPage = () => {
                     <input type="password" value={password} onChange={handlePasswordChange} />
                 </label>
                 <br />
-                <button type="submit">Register</button>
+                <Button text='Register' color='green' />
+                {/* <button type="submit">Register</button> */}
             </form>
         </div>
     );
