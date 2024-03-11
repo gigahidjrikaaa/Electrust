@@ -6,6 +6,9 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --rich-black: 0, 0, 0;
+  --oxford-blue: 0, 33, 71;
+  --gold: 255, 215, 0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,7 +24,7 @@ body {
   background: linear-gradient(
       to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
+      rgb(var(--oxford-blue))
     )
     rgb(var(--background-start-rgb));
 }
@@ -30,11 +33,4 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-}
-
-/* Color Palette */
-:root {
-  --primary-color: #FF0000;
-  --secondary-color: #00FF00;
-  --accent-color: #0000FF;
 }

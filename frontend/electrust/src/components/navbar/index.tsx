@@ -4,10 +4,12 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 
 const Navbar: React.FC = () => {
     return (
-        
         <nav className="flex bg-white w-screen h-min sticky">
-            <div className="logo flex bg-gray-500 h-full w-full items-center text-center">
-                <Image src="/logo.png" alt="Electrust Logo Here" width={10} height={0} className='h-20 w-20 ml-10 min-w-min bg-slate-800 items-center text-center justify-center flex'/>
+            <div className="flex w-full">
+                <div className="w-16 h-16 border-white border-1 my-5 rounded-full overflow-hidden ml-8">
+                    <Image src="/electrust-logo.svg" className="w-full h-full justify-center text-center" alt="Electrust Logo" width={100} height={100} />
+                </div>
+                <h1 className="text-4xl font-bold font-sans ml-5 my-8 text-mikadoYellow">Electrust</h1>
             </div>
             <div className="buttons text-black font-mono flex w-full mr-10">
                 <button className='hover:bg-blue-600 w-full transition-all'>About</button>

@@ -9,6 +9,24 @@ const config: Config = {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    colors: {
+      oxfordBlue: {
+        DEFAULT: "#0B132B",
+      },
+      richBlack: {
+        DEFAULT: "#1C2541",
+      },
+      yaleBlue: {
+        DEFAULT: "#3A506B",
+      },
+      mikadoYellow: {
+        DEFAULT: "#F4D35E",
+      },
+      gold: {
+        DEFAULT: "#EE964B",
+      },
+    },
+    
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
