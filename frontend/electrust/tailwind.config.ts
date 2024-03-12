@@ -26,7 +26,9 @@ const config: Config = {
         DEFAULT: "#EE964B",
       },
     },
-    
+    fontFamily: {
+      'russo-one': ['Russo One', 'sans-serif'],
+    },
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
