@@ -12,6 +12,8 @@
     "@meshsdk/core": "^1.5.11-beta.3",
     "@meshsdk/react": "^1.1.10-beta.3",
     "@nextui-org/react": "^2.2.10",
+    "@tsparticles/engine": "^3.3.0",
+    "@tsparticles/react": "^3.0.0",
     "aos": "^2.3.4",
     "framer-motion": "^11.0.8",
     "install": "^0.13.0",
