@@ -1,0 +1,14 @@
+{
+  "name": "electrust-api",
+  "version": "1.0.0",
+  "description": "Electrust backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Giga Hidjrika Aura Adkhy",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.3"
+  }
+}
