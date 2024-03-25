@@ -1,6 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { link } from 'fs';
+import Link from 'next/link';
 
 const Navbar: React.FC = () => {
     return (
@@ -17,7 +19,10 @@ const Navbar: React.FC = () => {
                 <button className='hover:bg-gold w-full transition-all'>Check Integrity</button>
                 <button className='hover:bg-gold w-full transition-all'>Contact Us</button>
                 <div className="flex w-full text-wrap">
-                    <button className='hover:bg-yaleBlue w-full' onClick={() => signIn('google')}>Sign In</button>
+                    <Link className="hover:bg-yaleBlue w-full transition-all flex" href="/auth/login">
+                        <button className='hover:bg-gold w-full transition-all'>Sign In</button>
+                    </Link>
+                    {/* <button className='hover:bg-yaleBlue w-full'>Sign In</button> */}
                 </div>
             </div>
         </nav>
