@@ -7,13 +7,13 @@ const Footer: React.FC = () => {
             <div className="flex flex-col gap-1">
                 {/* Linkedin, Twitter, and instagram logo */}
                 <div className="flex justify-center items-center text-justify gap-10">
-                    <a href="https://www.linkedin.com/">
+                    <a href="https://www.linkedin.com/in/gigahidjrikaaa">
                         <Image src="/linkedin.svg" alt="Linkedin Logo" width={30} height={30} />
                     </a>
                     <a href="https://www.twitter.com/">
                         <Image src="/twitter.svg" alt="Twitter Logo" width={30} height={30} />
                     </a>
-                    <a href="https://www.instagram.com/">
+                    <a href="https://www.instagram.com/gigahidjrikaaa">
                         <Image src="/instagram.svg" alt="Instagram Logo" width={30} height={30} />
                     </a>
                 </div>  
