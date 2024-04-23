@@ -9,8 +9,6 @@ import { button } from '@nextui-org/react';
 import React from "react";
 import { BrowserWallet } from "@meshsdk/core";
 
-const wallets = BrowserWallet.enable("yoroi");
-
 export default function Dashboard() {
     return (
         <div>
