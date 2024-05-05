@@ -26,7 +26,13 @@ jobs:
     #   run: npm test
     #   working-directory: ./backend/electrust-api
 
+    - name: Build Backend
+      run: npm build
+      working-directory: ./backend/electrust-api
+
     - name: Deploy Backend
       run: |
-        npm run dev
+        echo "Deploying Backend"
+        # Add your deployment script here
+        echo "Backend Deployed (LOL)"
       working-directory: ./backend/electrust-api
