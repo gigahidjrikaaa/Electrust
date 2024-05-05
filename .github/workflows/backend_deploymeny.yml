@@ -20,13 +20,13 @@ jobs:
 
     - name: Install Dependencies
       run: npm install
-      working-directory: ./backend
+      working-directory: ./backend/electrust-api
 
     - name: Build and Test
       run: npm test
-      working-directory: ./backend
+      working-directory: ./backend/electrust-api
 
     - name: Deploy Backend
       run: |
         npm run dev
-      working-directory: ./backend
+      working-directory: ./backend/electrust-api
