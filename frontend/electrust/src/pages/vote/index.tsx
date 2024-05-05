@@ -15,21 +15,28 @@ export default function Dashboard() {
         <div>
             <Navbar />
             <div className="bg-oxfordBlue w-full">
-                <div className="h-screen flex flex-col justify-center items-center text-justify mt-20">
-                    <h1 className="text-4xl font-bold font-russo-one text-mikadoYellow">Voting</h1>
-                    <p className="text-white text-center">Vote your choices here!</p>
-                    <div className="flex flex-row justify-center items-center h-2/3">
-                        <Card className="m-4" style={{ width: "300px" }}>
-                            <h2>Choice 1</h2>
-                            <Button>Vote</Button>
+                <div className="h-fit min-h-screen flex flex-col justify-center items-center text-justify mt-20 pt-10">
+                    <h1 className="text-4xl font-bold font-russo-one text-mikadoYellow">Voting Page</h1>
+                    <div className="election-name flex flex-col justify-center items-center mt-4">
+                        <h2 className="text-white text-2xl font-bold font-russo-one">Election Name</h2>
+                        <p className="text-white text-center">This is the election description</p>
+                    </div>
+
+                    <div className="flex flex-row justify-center items-center h-full">
+                        <Card className="m-4 transition-all ease-in hover:scale-105" style={{ width: "300px" }}>
+                            <h2 className="flex flex-row text-center justify-center align-middle p-5 font-bold font-russo-one text-3xl">Choice 1</h2>
+                            <Image src="/cand1.jpg" width={300} height={200} alt={""} />
+                            <Button className="py-10 text-xl font-russo-one">Vote</Button>
                         </Card>
-                        <Card className="m-4" style={{ width: "300px" }}>
-                            <h2>Choice 2</h2>
-                            <Button>Vote</Button>
+                        <Card className="m-4 transition-all ease-in hover:scale-105" style={{ width: "300px" }}>
+                            <h2 className="flex flex-row text-center justify-center align-middle p-5 font-bold font-russo-one text-3xl">Choice 2</h2>
+                            <Image src="/cand2.jpg" width={300} height={200} alt={""} />
+                            <Button className="py-10 text-xl font-russo-one">Vote</Button>
                         </Card>
-                        <Card className="m-4" style={{ width: "300px" }}>
-                            <h2>Choice 3</h2>
-                            <Button>Vote</Button>
+                        <Card className="m-4 transition-all ease-in hover:scale-105" style={{ width: "300px" }}>
+                            <h2 className="flex flex-row text-center justify-center align-middle p-5 font-bold font-russo-one text-3xl">Choice 3</h2>
+                            <Image src="/cand3.jpg" width={300} height={200} alt={""} />
+                            <Button className="py-10 text-xl font-russo-one">Vote</Button>
                         </Card>
                     </div>
                 </div>
