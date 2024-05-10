@@ -25,16 +25,8 @@ export default function Dashboard() {
 
                     <div className="flex flex-row justify-center items-center h-full">
                         <CandidateCard name="Choice 1" image="/cand1.jpg" vote={() => {}} />
-                        <Card className="m-4 transition-all ease-in hover:scale-105" style={{ width: "300px" }}>
-                            <h2 className="flex flex-row text-center justify-center align-middle p-5 font-bold font-russo-one text-3xl">Choice 2</h2>
-                            <Image src="/cand2.jpg" width={300} height={200} alt={""} />
-                            <Button className="py-10 text-xl font-russo-one">Vote</Button>
-                        </Card>
-                        <Card className="m-4 transition-all ease-in hover:scale-105" style={{ width: "300px" }}>
-                            <h2 className="flex flex-row text-center justify-center align-middle p-5 font-bold font-russo-one text-3xl">Choice 3</h2>
-                            <Image src="/cand3.jpg" width={300} height={200} alt={""} />
-                            <Button className="py-10 text-xl font-russo-one">Vote</Button>
-                        </Card>
+                        <CandidateCard name="Choice 2" image="/cand2.jpg" vote={() => {}} />
+                        <CandidateCard name="Choice 3" image="/cand3.jpg" vote={() => {}} />
                     </div>
                 </div>
                 
