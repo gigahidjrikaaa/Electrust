@@ -8,13 +8,13 @@ const Footer: React.FC = () => {
                 {/* Linkedin, Twitter, and instagram logo */}
                 <div className="flex justify-center items-center text-justify gap-10">
                     <a href="https://www.linkedin.com/in/gigahidjrikaaa">
-                        <Image src="/linkedin.svg" alt="Linkedin Logo" width={30} height={30} />
+                        <Image src="/linkedin-logo.webp" alt="Linkedin Logo" width={30} height={30} />
                     </a>
-                    <a href="https://www.twitter.com/">
-                        <Image src="/twitter.svg" alt="Twitter Logo" width={30} height={30} />
+                    <a href="https://www.x.com/">
+                        <Image src="/x-logo.png" alt="X Logo" width={30} height={30} />
                     </a>
                     <a href="https://www.instagram.com/gigahidjrikaaa">
-                        <Image src="/instagram.svg" alt="Instagram Logo" width={30} height={30} />
+                        <Image src="/insta-logo.png" alt="Instagram Logo" width={30} height={30} />
                     </a>
                 </div>  
                 <p className="text-center justify-center items-center">
