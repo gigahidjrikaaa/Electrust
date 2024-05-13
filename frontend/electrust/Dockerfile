@@ -1,9 +1,10 @@
-FROM  node:20-alpine3.17 AS builder 
+FROM  node AS builder 
 WORKDIR /app 
 COPY package.json . 
-RUN npm install 
-COPY . . 
+COPY . .
+RUN npm install  
 RUN npm run build
+
 FROM nginx:1.25.2-alpine-slim 
  
 COPY --from=builder /app/build /usr/share/nginx/html 
