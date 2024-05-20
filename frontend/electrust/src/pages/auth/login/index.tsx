@@ -111,6 +111,9 @@ const LoginPage = () => {
                             onClick={handleSubmit}
                             >Login
                         </Button>
+                        <div className='flex flex-row justify-center'>
+                            <p>Dont have an account? <Button className='mx-2'>Register</Button></p>
+                        </div>
                     </form>
                 </div>
             </div>
