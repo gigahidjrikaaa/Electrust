@@ -18,11 +18,17 @@ const LoginPage = () => {
 
     const validateEmail = (email: string) => email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
 
-    const isInvalid = React.useMemo(() => {
+    const isEmailInvalid = React.useMemo(() => {
         if (email === "") return false;
 
         return validateEmail(email) ? false : true;
     }, [email]);
+
+    const isPassInvalid = React.useMemo(() => {
+        if (password === "") return false;
+
+        return password.length > 5 ? false : true;
+    }, [password]);
 
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value);
@@ -34,7 +40,7 @@ const LoginPage = () => {
         e.preventDefault();
         setSubmitted(true);
         validateEmail(email);
-        
+
         // if email and password are empty, return
         if (!email)
         {
@@ -59,7 +65,7 @@ const LoginPage = () => {
                 </div>
                 <div className='w-1/2'>
                     <h1 className='text-4xl my-10 uppercase font-bold'>Login</h1>
-                    <form onSubmit={handleSubmit} className='w-1/2'>
+                    <form onSubmit={handleSubmit} className='w-3/4'>
                         <div className='flex flex-col my-2'>
                             {/* <label htmlFor="email">Email:</label> */}
                             <Input 
@@ -71,6 +77,8 @@ const LoginPage = () => {
                                 label='Email'
                                 placeholder='Enter your email'
                                 required
+                                color={isEmailInvalid ? "danger" : "default"}
+                                errorMessage={isEmailInvalid && 'Please fill in the email'}
                                 defaultValue='email@email.com' 
                             />
                         </div>
@@ -83,8 +91,8 @@ const LoginPage = () => {
                                 onChange={handlePasswordChange}
                                 label='Password'
                                 required
-                                color={isInvalid ? "danger" : "default"}
-                                errorMessage={isInvalid && 'Please fill in the password'}
+                                color={isPassInvalid ? "danger" : "default"}
+                                errorMessage={isPassInvalid && 'Password must be at least 6 characters'}
                                 placeholder='Enter your password' 
                             /> 
                         </div>
@@ -97,7 +105,6 @@ const LoginPage = () => {
                                 <a href='#' className='text-blue-500'>Forgot password?</a>
                             </div>
                         </div>
-                        {error && <p className='text-red-500'>{error}</p> }
                         <Button 
                             type='submit' 
                             className='my-5 hover:bg-gold w-full'
