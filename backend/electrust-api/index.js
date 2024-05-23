@@ -46,10 +46,5 @@ app.get('/status', (req, res) => {
     }
 );
 
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
-    }   
-);
-
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
