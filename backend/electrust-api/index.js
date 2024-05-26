@@ -7,6 +7,8 @@ const passport = require('./config/passport');
 const authRoutes = require('./routes/authRoutes');
 const electionRoutes = require('./routes/electionRoutes');
 const userRoutes = require('./routes/userRoutes');
+const session = require('express-session');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 const app = express();
 
@@ -14,6 +16,14 @@ app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
 app.use(passport.initialize());
+
+
+// Configure session middleware
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: true,
+}));
 
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
