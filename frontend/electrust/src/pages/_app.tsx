@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { NextUIProvider } from "@nextui-org/react";
+import { UserProvider } from "@/context/userContext";  // Import the UserProvider
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -11,9 +12,12 @@ export default function App({ Component, pageProps }: AppProps) {
       duration: 2000,
     });
   }, []);
+
   return (
-  <NextUIProvider>
-    <Component {...pageProps} />
-  </NextUIProvider>
+    <UserProvider>
+      <NextUIProvider>
+        <Component {...pageProps} />
+      </NextUIProvider>
+    </UserProvider>
   );
 }

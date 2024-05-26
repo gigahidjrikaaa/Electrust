@@ -1,11 +1,23 @@
+// frontend/electrust/src/pages/register.tsx
 import { Button } from '@nextui-org/button';
 import { Input } from '@nextui-org/input';
 import Navbar from '@/components/navbar';
 import { useState } from 'react';
+import { useUser } from '@/context/userContext';
+import { useRouter } from 'next/router';
 
 const RegisterPage = () => {
+    const { setUser } = useUser();
+    const router = useRouter();
+
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
+    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setName(e.target.value);
+    };
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
@@ -15,9 +27,18 @@ const RegisterPage = () => {
         setPassword(e.target.value);
     };
 
+    const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setConfirmPassword(e.target.value);
+    };
+
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Add your register logic here
+        if (password === confirmPassword) {
+            setUser({ name, email });
+            router.push('/profile');
+        } else {
+            alert("Passwords don't match");
+        }
     };
 
     return (
@@ -28,7 +49,7 @@ const RegisterPage = () => {
                 <form onSubmit={handleSubmit} className='w-1/2'>
                     <div className='flex flex-col my-2'>
                         <label htmlFor="name">Name:</label>
-                        <Input id="name" />
+                        <Input id="name" value={name} onChange={handleNameChange} />
                     </div>
                     <div className='flex flex-col my-2'>
                         <label htmlFor="email">Email:</label>
@@ -40,7 +61,7 @@ const RegisterPage = () => {
                     </div>
                     <div className='flex flex-col my-2'>
                         <label htmlFor="confirm-password">Confirm Password:</label>
-                        <Input id="confirm-password" type='password' />
+                        <Input id="confirm-password" type='password' value={confirmPassword} onChange={handleConfirmPasswordChange} />
                     </div>
                     <Button type='submit' className='my-5 hover:bg-gold w-full'>Register</Button>
                 </form>
