@@ -39,7 +39,7 @@ export default function Home() {
             <p className="font-semibold text-oxfordBlue">21/473893/TK/52247</p>
           </div>
           <div className="text-center transform rotate-[5deg] hover:rotate-0 transition duration-300">
-            <Image src="/cand1.jpg" alt="Developer 2" width={200} height={200} className="rounded-full" />
+            <Image src="/cand10.jpg" alt="Developer 2" width={200} height={200} className="rounded-full" />
             <p className="mt-4 font-semibold text-oxfordBlue">Ahmad Fauzan</p>
             <p className="font-semibold text-oxfordBlue">21/473893/TK/52247</p>
           </div>
