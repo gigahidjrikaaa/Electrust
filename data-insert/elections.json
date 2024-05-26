@@ -1,0 +1,34 @@
+[
+  {
+    "title": "2024 Presidential Election",
+    "description": "Election to choose the next president.",
+    "startDate": "2024-11-05T00:00:00Z",
+    "endDate": "2024-11-05T23:59:59Z",
+    "candidates": [
+      {
+        "name": "Candidate A",
+        "description": "Description of Candidate A"
+      },
+      {
+        "name": "Candidate B",
+        "description": "Description of Candidate B"
+      }
+    ]
+  },
+  {
+    "title": "2024 Local Council Election",
+    "description": "Election to choose local council members.",
+    "startDate": "2024-11-06T00:00:00Z",
+    "endDate": "2024-11-06T23:59:59Z",
+    "candidates": [
+      {
+        "name": "Candidate C",
+        "description": "Description of Candidate C"
+      },
+      {
+        "name": "Candidate D",
+        "description": "Description of Candidate D"
+      }
+    ]
+  }
+]

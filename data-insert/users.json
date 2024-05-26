@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Alice Smith",
+    "email": "alice@example.com",
+    "password": "$2a$10$7bWux.Ss8sOQk1bEO5rCUeG90EoRV6y8zPd3odfw9RxDTRAV5p0AS",
+    "googleId": "",
+    "date": "2023-01-01T00:00:00Z"
+  },
+  {
+    "name": "Bob Johnson",
+    "email": "bob@example.com",
+    "password": "$2a$10$7bWux.Ss8sOQk1bEO5rCUeG90EoRV6y8zPd3odfw9RxDTRAV5p0AS", 
+    "googleId": "",
+    "date": "2023-01-02T00:00:00Z"
+  }
+]
