@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Navbar from '@/components/navbar';
 import { input } from '@nextui-org/react';
 import React from 'react';
+import Link from 'next/link';
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -112,7 +113,7 @@ const LoginPage = () => {
                             >Login
                         </Button>
                         <div className='flex flex-row justify-center'>
-                            <p>Dont have an account? <Button className='mx-2'>Register</Button></p>
+                            <p>Dont have an account? <Link href="/auth/register"><Button className='mx-2'>Register</Button></Link></p>
                         </div>
                     </form>
                 </div>
