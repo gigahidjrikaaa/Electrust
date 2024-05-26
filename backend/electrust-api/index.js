@@ -2,7 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
+<<<<<<< HEAD
 const passport = require('passport');
+=======
+const cors = require('cors');
+const passport = require('./config/passport');
+>>>>>>> eeee1c09032c7a08bfec0af40b12d9e6c3189c44
 const authRoutes = require('./routes/authRoutes');
 const electionRoutes = require('./routes/electionRoutes');
 const userRoutes = require('./routes/userRoutes');
@@ -12,13 +17,31 @@ require('dotenv').config();
 
 const app = express();
 
+const corsOptions = {
+  origin: '*',
+  credentials: true,
+};
+
 app.use(helmet());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
+<<<<<<< HEAD
+=======
+app.use(passport.initialize());
+
+// Allow CORS from anywhere for development in helmet
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+>>>>>>> eeee1c09032c7a08bfec0af40b12d9e6c3189c44
 
 // Configure session middleware
 app.use(session({
-  secret: 'your-secret-key',
+  secret: 'senpro-blockchain',
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false } // Set secure to true if using HTTPS
@@ -38,6 +61,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/elections', electionRoutes);
 app.use('/api/user', userRoutes);
 
+<<<<<<< HEAD
 // Configure Passport to use Google OAuth 2.0 strategy
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
@@ -88,6 +112,9 @@ app.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/');
 });
+=======
+app.get('/', (req, res) => res.send('API running'));
+>>>>>>> eeee1c09032c7a08bfec0af40b12d9e6c3189c44
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

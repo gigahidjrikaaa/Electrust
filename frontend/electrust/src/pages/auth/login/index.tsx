@@ -5,7 +5,9 @@ import Image from 'next/image';
 import Navbar from '@/components/navbar';
 import { input } from '@nextui-org/react';
 import React from 'react';
+import axios from 'axios';
 import Link from 'next/link';
+import Router from 'next/router';
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -37,7 +39,7 @@ const LoginPage = () => {
 
     
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setSubmitted(true);
         validateEmail(email);
@@ -53,7 +55,19 @@ const LoginPage = () => {
             setError('Please fill in the password');
             return;
         }
-        
+
+        try
+        {
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, { email, password });
+            document.cookie = `jwt=${res.data.token}; path=/; max-age=86400;`;
+            Router.push('/dashboard');
+        }
+        catch (err)
+        {
+            console.log(err);
+            setError('Failed to login. Please try again.');
+            alert('Failed to login. Please try again.');
+        }
     };
 
 
