@@ -5,6 +5,7 @@ import Navbar from '@/components/navbar';
 import { useState } from 'react';
 import { useUser } from '@/context/userContext';
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
 const RegisterPage = () => {
     const { setUser } = useUser();
@@ -31,14 +32,15 @@ const RegisterPage = () => {
         setConfirmPassword(e.target.value);
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (password === confirmPassword) {
-            setUser({ name, email });
-            router.push('/profile');
-        } else {
-            alert("Passwords don't match");
-        }
+        try {
+            await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, { name, email, password });
+            router.push('/auth/login');
+          } catch (err) {
+            console.error(err);
+            alert('Registration failed');
+          }
     };
 
     return (
