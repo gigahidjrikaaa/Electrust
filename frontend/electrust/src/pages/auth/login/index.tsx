@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Navbar from '@/components/navbar';
 import { input } from '@nextui-org/react';
 import React from 'react';
+import axios from 'axios';
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -52,7 +53,15 @@ const LoginPage = () => {
             setError('Please fill in the password');
             return;
         }
-        
+
+        // Send POST request to the server
+        fetch('http://localhost:5000/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        })
     };
 
 
