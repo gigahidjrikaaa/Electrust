@@ -128,7 +128,11 @@ const LoginPage = () => {
                         </Button>
                         <div className='flex flex-row justify-center'>
                             <p>Dont have an account? <Link href="/auth/register"><Button className='mx-2'>Register</Button></Link></p>
+                            <a href="http://localhost:5000/auth/google">
+                                <Image src="/google-logo.webp" alt="Instagram Logo" width={40} height={100} />
+                            </a>
                         </div>
+                        
                     </form>
                 </div>
             </div>
