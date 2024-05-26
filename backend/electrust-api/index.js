@@ -1,60 +1,82 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const helmet = require('helmet');
-const session = require('express-session');
 const passport = require('passport');
+const session = require('express-session');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
-const { ensureAuthenticated } = require('./middlewares/auth');
-require('dotenv').config();
-
-// Import routes
-const authRoutes = require('./routes/auth');
-const apiRoutes = require('./routes/api');
+require('dotenv').config();  // Load environment variables from .env
 
 const app = express();
 
-// Middleware
-app.use(helmet());
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+// Middleware configurations
 app.use(cookieParser());
-app.use(session({ secret: 'your_secret_key', resave: false, saveUninitialized: false }));
-
-// Passport configuration
-require('./config/passport');
+app.use(session({
+  secret: 'your-session-secret',  // This can also be moved to .env
+  resave: false,
+  saveUninitialized: true,
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Passport configuration
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: process.env.CALLBACK_URL,
+}, (accessToken, refreshToken, profile, done) => {
+  return done(null, profile);
+}));
+
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
+
+// JWT secret key
+const JWT_SECRET = process.env.JWT_SECRET;
+
 // Routes
-app.use('/auth', authRoutes);
-app.use('/api', ensureAuthenticated, apiRoutes);
+app.get('/', (req, res) => {
+  res.send('<a href="/auth/google">Authenticate with Google</a>');
+});
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.log(err));
-
-// Define routes
 app.get('/auth/google',
-  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] })
+  passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 
-app.get('/auth/google/callback', 
+app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
-  function(req, res) {
-    res.redirect('/');
+  (req, res) => {
+    const token = jwt.sign({ id: req.user.id, displayName: req.user.displayName }, JWT_SECRET, { expiresIn: '1h' });
+    res.cookie('jwt', token, { httpOnly: true, secure: true });
+    res.redirect('/profile');
   }
 );
 
-app.get('/', (req, res) => {
-  res.send('<a href="/auth/google">Sign In with Google</a>');
+app.get('/profile', (req, res) => {
+  const token = req.cookies.jwt;
+  if (!token) {
+    return res.redirect('/');
+  }
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    res.send(`<h1>Hello ${decoded.displayName}</h1><a href="/logout">Logout</a>`);
+  } catch (err) {
+    res.redirect('/');
+  }
 });
 
-app.get('/status', (req, res) => {
-    // show the status-page from the public folder
-    res.sendFile(__dirname + '/public/status-page/index.html');
-    }
-);
+app.get('/logout', (req, res) => {
+  res.clearCookie('jwt');
+  req.logout();
+  res.redirect('/');
+});
 
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+// Start server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
