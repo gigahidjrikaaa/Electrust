@@ -16,7 +16,7 @@ const register = async (req, res) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.cookie('jwt', token, { httpOnly: true }).status(201).json({ token });
   } catch (err) {
-    res.status(500).send('Server error');
+    res.status(500).send('Server error. Modar');
   }
 };
 
