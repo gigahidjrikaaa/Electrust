@@ -28,8 +28,8 @@ export default function Dashboard() {
 
                     <div className="flex flex-row justify-center items-center h-full">
                         <CandidateCard name="Choice 1" image="/cand1.jpg" vote={"1231234123scadafjojaso123e"}/>
-                        <CandidateCard name="Choice 2" image="/cand2.jpg" vote={"8381r1irh8f9w149fjidhh018fh1"} />
-                        <CandidateCard name="Choice 3" image="/cand3.jpg" vote={"213412nwj23124inwln1i2lnaf"} />
+                        <CandidateCard name="Choice 2" image="/fotokrisna.jpg" vote={"8381r1irh8f9w149fjidhh018fh1"} />
+                        <CandidateCard name="Choice 3" image="/cand10.jpg" vote={"213412nwj23124inwln1i2lnaf"} />
 
                     </div>
                     
