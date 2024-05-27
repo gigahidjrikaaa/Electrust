@@ -16,9 +16,6 @@ const Navbar: React.FC = () => {
             </div>
             <div className="buttons text-white font-russo-one flex w-full mr-10">
                 
-                
-                
-                
                 <div className="flex w-full text-wrap">
                     <Link className="hover:bg-yaleBlue w-full transition-all flex" href="/">
                         <button className='hover:bg-gold w-full transition-all'>Home</button>
@@ -27,7 +24,7 @@ const Navbar: React.FC = () => {
                 </div>
                 <div className="flex w-full text-wrap">
                     <Link className="hover:bg-yaleBlue w-full transition-all flex" href="/steps">
-                        <button className='hover:bg-gold w-full transition-all'>How Does it Work</button>
+                        <button className='hover:bg-gold w-full transition-all'>How Does it Work?</button>
                     </Link>
                     {/* <button className='hover:bg-yaleBlue w-full'>Sign In</button> */}
                 </div>
