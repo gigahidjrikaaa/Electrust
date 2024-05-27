@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Hero from "@/components/landingpage/hero";
+import ChatbotIframe from "@/components/chatbot";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <div className="flex flex-col">
       <Navbar />
       <Hero />
       <div className="bg-blackBlue w-full flex flex-col justify-center items-center text-center">
@@ -50,8 +51,8 @@ export default function Home() {
           </div>
         </div>
       </div>
-
       <Footer />
+      <ChatbotIframe />
     </div>
   );
 }
