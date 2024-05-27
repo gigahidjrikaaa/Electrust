@@ -5,7 +5,7 @@ import { Card } from "@nextui-org/card";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@nextui-org/react";
 import React, { useState } from "react";
 
-export default function CandidateCard({ name, image, voteID }: { name: string, image: string, vote: () => void}) {
+export default function CandidateCard({ name, image, voteID }: { name: string, image: string, voteID: string}) {
     const [showModal, setShowModal] = useState(false);
     const {isOpen, onOpen, onOpenChange} = useDisclosure()
 
