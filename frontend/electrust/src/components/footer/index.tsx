@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Footer: React.FC = () => {
     return (
-        <footer className='bg-oxfordBlue py-5 hover:bg-gold transition-all'>
+        <footer className='bg-oxfordBlue py-5 hover:bg-yaleBlue transition-all'>
             <div className="flex flex-col gap-1">
                 {/* Linkedin, Twitter, and instagram logo */}
                 <div className="flex justify-center items-center text-justify gap-10">

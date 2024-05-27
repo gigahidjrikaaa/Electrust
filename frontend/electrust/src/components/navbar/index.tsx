@@ -6,7 +6,6 @@ import Link from 'next/link';
 
 const Navbar: React.FC = () => {
     return (
-        
         <nav className="flex bg-oxfordBlue w-screen h-min fixed top-0 z-50">
             <div className="flex w-full">
                 <div className="w-16 h-16 border-white border-1 my-5 rounded-full overflow-hidden ml-8">
@@ -15,39 +14,37 @@ const Navbar: React.FC = () => {
                 <h1 className="text-4xl font-bold font-russo-one ml-5 my-8 text-mikadoYellow">Electrust</h1>
             </div>
             <div className="buttons text-white font-russo-one flex w-full mr-10">
-                
                 <div className="flex w-full text-wrap">
                     <Link className="hover:bg-yaleBlue w-full transition-all flex" href="/">
-                        <button className='hover:bg-gold w-full transition-all'>Home</button>
+                        <button className='hover:bg-yaleBlue w-full transition-all'>Home</button>
                     </Link>
                     {/* <button className='hover:bg-yaleBlue w-full'>Sign In</button> */}
                 </div>
                 <div className="flex w-full text-wrap">
                     <Link className="hover:bg-yaleBlue w-full transition-all flex" href="/steps">
-                        <button className='hover:bg-gold w-full transition-all'>How Does it Work?</button>
+                        <button className='hover:bg-yaleBlue w-full transition-all'>How Does it Work?</button>
                     </Link>
                     {/* <button className='hover:bg-yaleBlue w-full'>Sign In</button> */}
                 </div>
                 <div className="flex w-full text-wrap">
                     <Link className="hover:bg-yaleBlue w-full transition-all flex" href="/integrity">
-                    <button className='hover:bg-gold w-full transition-all'>Check Integrity</button>
+                        <button className='hover:bg-yaleBlue w-full transition-all'>Check Integrity</button>
                     </Link>
                     {/* <button className='hover:bg-yaleBlue w-full'>Sign In</button> */}
                 </div>
                 <div className="flex w-full text-wrap">
                     <Link className="hover:bg-yaleBlue w-full transition-all flex" href="/vote">
-                        <button className='hover:bg-gold w-full transition-all'>Vote</button>
+                        <button className='hover:bg-yaleBlue w-full transition-all'>Vote</button>
                     </Link>
                     {/* <button className='hover:bg-yaleBlue w-full'>Sign In</button> */}
                 </div>
                 <div className="flex w-full text-wrap">
                     <Link className="hover:bg-yaleBlue w-full transition-all flex" href="/auth/login">
-                        <button className='hover:bg-gold w-full transition-all'>Sign In</button>
+                        <button className='hover:bg-yaleBlue w-full transition-all'>Sign In</button>
                     </Link>
                     {/* <button className='hover:bg-yaleBlue w-full'>Sign In</button> */}
                 </div>
             </div>
-
         </nav>
     );
 };
