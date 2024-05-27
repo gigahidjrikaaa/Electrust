@@ -15,7 +15,7 @@ export default function CandidateCard({ name, image, voteID }: { name: string, i
     };
 
     const handleVoteClick = () => {
-        alert("You picked " + voteID);
+        alert("Voted for " + name + " with ID: " + voteID);
         console.log("Voted for " + name + " with ID: " + voteID);
     }
 
