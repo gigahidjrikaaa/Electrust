@@ -1,5 +1,7 @@
 const Election = require('../models/Election');
 const Candidate = require('../models/Candidate');
+const User = require('../models/User');
+const cardano = require('../utils/cardano');
 
 const getElections = async (req, res) => {
     try {
@@ -39,12 +41,8 @@ const getCandidate = async (req, res) => {
     }
 };
 
-const Election = require('../models/Election');
-const User = require('../models/User');
-const cardano = require('../utils/cardano');
-
 // CARDANO CLI COMMANDS
-getElection = async (req, res) => {
+const getElectionBlockchain = async (req, res) => {
     try {
         const { title, description, startDate, endDate, candidates } = req.body;
 
@@ -78,5 +76,4 @@ getElection = async (req, res) => {
 
 //! Implement other election-related controllers for Cardano blockchain here
 
-
-module.exports = { getElections, getElection, getCandidates, getCandidate, getElection };
+module.exports = { getElections, getElection, getCandidates, getCandidate, getElectionBlockchain };
