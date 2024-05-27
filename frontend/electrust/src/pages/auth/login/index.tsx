@@ -52,7 +52,7 @@ const LoginPage = () => {
         }
         if (!password)
         {
-            setError('Please fill in the password');
+            setError('Please fill in the password');        
             return;
         }
 
@@ -80,7 +80,7 @@ const LoginPage = () => {
                 </div>
                 <div className='w-1/2'>
                     <h1 className='text-4xl my-10 uppercase font-bold'>Login</h1>
-                    <form onSubmit={handleSubmit} className='w-3/4'>
+                    <form className='w-3/4'>
                         <div className='flex flex-col my-2'>
                             {/* <label htmlFor="email">Email:</label> */}
                             <Input 
@@ -120,12 +120,10 @@ const LoginPage = () => {
                                 <a href='#' className='text-blue-500'>Forgot password?</a>
                             </div>
                         </div>
-                        <Button 
-                            type='submit' 
+                        <Link href="/vote"><Button 
                             className='my-5 hover:bg-gold w-full'
-                            onClick={handleSubmit}
                             >Login
-                        </Button>
+                        </Button></Link>
                         <div className='flex flex-row justify-center'>
                             <p>Dont have an account? <Link href="/auth/register"><Button className='mx-2'>Register</Button></Link></p>
                             <a href="http://localhost:5000/auth/google">
