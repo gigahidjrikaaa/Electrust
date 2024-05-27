@@ -51,8 +51,8 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Footer />
       <ChatbotIframe />
+      <Footer />
     </div>
   );
 }
