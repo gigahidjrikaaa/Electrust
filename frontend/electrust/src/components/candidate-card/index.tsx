@@ -8,7 +8,6 @@ import React, { useState } from "react";
 export default function CandidateCard({ name, image, voteID }: { name: string, image: string, vote: () => void}) {
     const [showModal, setShowModal] = useState(false);
     const {isOpen, onOpen, onOpenChange} = useDisclosure()
-    const [size, setSize] = React.useState('5xl')
 
     const handleCardClick = () => {
         
@@ -22,25 +21,27 @@ export default function CandidateCard({ name, image, voteID }: { name: string, i
 
     return (
         <div className="my-8">
-            <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+            <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="4xl">
                 <ModalContent>
                     <ModalHeader>{name}</ModalHeader>
                     <ModalBody>
-                        <div className="flex">
-                            <Image src={image} width={300} height={200} className="w-1/2" alt={""}/>
+                        <div className="flex flex-row">
+                            <Image src={image} width={200} height={200} className="w-1/2 rounded-xl" alt={""}/>
+                            <div className="flex flex-col mx-6">
+                                <h2 className="text-2xl font-bold font-russo-one text-justify">Candidate Information</h2>
+                                <p>
+                                    Sunt ad dolore quis aute consequat. Magna exercitation reprehenderit
+                                    magna aute tempor cupidatat consequat elit dolor adipisicing. Mollit
+                                    dolor eiusmod sunt ex incididunt cillum quis. Velit duis sit officia
+                                    eiusmod Lorem aliqua enim laboris do dolor eiusmod. Et mollit
+                                    incididunt nisi consectetur esse laborum eiusmod pariatur proident
+                                    Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
+                                </p>
+                            </div>
                         </div>
-                        <h2 className="text-2xl font-bold font-russo-one">Candidate Information</h2>
-                        <p>
-                            Sunt ad dolore quis aute consequat. Magna exercitation reprehenderit
-                            magna aute tempor cupidatat consequat elit dolor adipisicing. Mollit
-                            dolor eiusmod sunt ex incididunt cillum quis. Velit duis sit officia
-                            eiusmod Lorem aliqua enim laboris do dolor eiusmod. Et mollit
-                            incididunt nisi consectetur esse laborum eiusmod pariatur proident
-                            Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
-                        </p>
                     </ModalBody>
-                    <ModalFooter>
-                        <Button onPress={handleVoteClick}>Vote</Button>
+                    <ModalFooter className="justify-center">
+                        <Button onPress={handleVoteClick} size="lg" color="danger">Vote</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
