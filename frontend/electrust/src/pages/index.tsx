@@ -32,7 +32,7 @@ export default function Home() {
       </div>
 
       <div className="bg-gray-200 py-20">
-        <h2 className="text-3xl font-bold text-center mb-10 text-oxfordBlue">Meet Our Developers</h2>
+        <h2 className="text-3xl font-bold  font-russo-one text-center mb-10 text-oxfordBlue">Meet Our Developers</h2>
         <div className="flex justify-center items-center space-x-8">
           <div className="text-center transform rotate-[-5deg] hover:rotate-0 transition duration-300">
             <Image src="/cand1.jpg" alt="Developer 1" width={200} height={200} className="rounded-full" />
