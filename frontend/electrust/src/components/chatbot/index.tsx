@@ -8,7 +8,7 @@ const ChatbotIframe = () => {
                 bottom: '20px',
                 right: '20px',
                 width: '100%',
-                height: '80vh',
+                height: '85vh',
                 minHeight: 'fit-content',
                 padding: '20px',
                 overflow: 'hidden',
@@ -22,12 +22,15 @@ const ChatbotIframe = () => {
             style={{ 
                 margin: 'auto',
                 width: '80%', 
-                height: '85%',
+                height: '80%',
                 overflow: 'hidden',
                 borderRadius: '10px',
                 boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.2)',
                  }}>
             </iframe>
+            <div className="mt-4 mb-4">
+                <p className="text-center">Powered by Microsoft Azure Bot Service</p>
+            </div>
         </div>
     )
 }
