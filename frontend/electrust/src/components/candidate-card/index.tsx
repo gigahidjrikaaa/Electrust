@@ -10,24 +10,27 @@ export default function CandidateCard({ name, image, voteID }: { name: string, i
     const {isOpen, onOpen, onOpenChange} = useDisclosure()
 
     const handleCardClick = () => {
-        
         console.log("Clicked on " + name);
     };
 
     const handleVoteClick = () => {
         alert("Voted for " + name + " with ID: " + voteID);
         console.log("Voted for " + name + " with ID: " + voteID);
+
+        // Close the modal
+        onOpenChange()
     }
 
     return (
         <div className="my-8">
-            <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="4xl" className="max-h-unit-9xl">
+            <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="4xl" className="max-h-unit-9xl" scrollBehavior="inside">
                 <ModalContent>
                     <ModalHeader className="justify-center text-center font-russo-one text-3xl">{name}</ModalHeader>
                     <ModalBody>
                         <div className="flex flex-row overflow-hidden max-h-unit-7xl">
                             <Image src={image} width={200} height={100} className="w-full h-auto aspect-auto rounded-xl" alt={""}/>
                             <div className="flex flex-col mx-6 overflow-auto">
+                                {/* Fetch dari backend */}
                                 <h2 className="text-2xl font-bold font-russo-one text-justify my-3">Candidate Information</h2>
                                 <p>
                                     Sunt ad dolore quis aute consequat. Magna exercitation reprehenderit
