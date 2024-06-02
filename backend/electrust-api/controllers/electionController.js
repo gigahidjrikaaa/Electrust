@@ -56,8 +56,8 @@ const createElection = async (req, res) => {
         await newElection.save();
 
         // Interact with Cardano to register the election
-        const txIn = 'tx_in_placeholder'; // e.g., 'd86d1c2f4f8bf3b5c1b1c1f3fbb1a5b5f5e5d5c5c5b5b5a5b5a5b5b5a5b5a5b5b5b5a5b5b5a5b5a5b5b5'
-        const txOut = 'addr1q9xyz...'; // The receiving address
+        const txIn = 'tx_in_placeholder'; // replace this
+        const txOut = 'addr1q9xyz...'; // replace this
         const amount = 1000000; // Amount in lovelace (1 ADA = 1,000,000 lovelace)
         const scriptAddress = './path_to_cardano_script'; // Path to your Cardano script
         const signingKey = './path_to_signing_key'; // Path to your signing key
