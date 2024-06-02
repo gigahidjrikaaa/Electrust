@@ -3,6 +3,7 @@ import {Input} from '@nextui-org/input'
 import { Button } from '@nextui-org/button';
 import Image from 'next/image';
 import Navbar from '@/components/navbar';
+import Footer from '@/components/footer';
 import { input } from '@nextui-org/react';
 import React from 'react';
 import axios from 'axios';
@@ -137,6 +138,7 @@ const LoginPage = () => {
                     </form>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 };
