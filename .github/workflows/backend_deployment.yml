@@ -23,15 +23,8 @@ jobs:
       env:
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      run: echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
-
-    - name: Build Docker image
-      shell: bash
-      run: docker build -t electrust-api .
-
-    - name: Push Docker image
-      shell: bash
-      run: docker push electrust-api
+      run: |
+        echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
 
     - name: SSH to VM and Update Repository
       uses: appleboy/ssh-action@master
@@ -42,6 +35,14 @@ jobs:
         script: |
           cd /home/electrust/Electrust/backend/electrust-api
           git pull
+
+    - name: Build Docker image
+      shell: bash
+      run: docker build -t electrust-api .
+
+    - name: Push Docker image
+      shell: bash
+      run: docker push electrust-api
 
     - name: Restart Docker Container on VM
       uses: appleboy/ssh-action@master
