@@ -1,7 +1,6 @@
 const Election = require('../models/Election');
 const Candidate = require('../models/Candidate');
-const User = require('../models/User');
-const Vote = require('../models/Vote');
+const Vote = require('../models/vote');
 const cardano = require('../utils/cardano');
 
 const getElections = async (req, res) => {
@@ -57,13 +56,14 @@ const createElection = async (req, res) => {
         await newElection.save();
 
         // Interact with Cardano to register the election
-        const txIn = 'user-tx-in'; // REPLACE THIS
-        const txOut = 'election-tx-out'; // REPLACE THIS
+        const txIn = 'tx_in_placeholder'; // e.g., 'd86d1c2f4f8bf3b5c1b1c1f3fbb1a5b5f5e5d5c5c5b5b5a5b5a5b5b5a5b5a5b5b5b5a5b5b5a5b5a5b5b5'
+        const txOut = 'addr1q9xyz...'; // The receiving address
         const amount = 1000000; // Amount in lovelace (1 ADA = 1,000,000 lovelace)
-        const scriptAddress = './cardano.js'; // REPLACE THIS
+        const scriptAddress = './path_to_cardano_script'; // Path to your Cardano script
+        const signingKey = './path_to_signing_key'; // Path to your signing key
 
         cardano.buildTransaction(txIn, txOut, amount, scriptAddress);
-        cardano.signTransaction('path/to/signing-key');
+        cardano.signTransaction(signingKey);
         cardano.submitTransaction();
 
         res.status(201).json(newElection);
