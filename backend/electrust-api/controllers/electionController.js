@@ -1,7 +1,7 @@
 const Election = require('../models/Election');
 const Candidate = require('../models/Candidate');
 const Vote = require('../models/vote');
-const cardano = require('../utils/cardano');
+const { createElectionOnCardano, submitVoteToCardano } = require('../utils/cardano');
 
 const getElections = async (req, res) => {
     try {
@@ -55,18 +55,19 @@ const createElection = async (req, res) => {
 
         await newElection.save();
 
-        // Interact with Cardano to register the election
-        const txIn = 'tx_in_placeholder'; // replace this
-        const txOut = 'addr1q9xyz...'; // replace this
-        const amount = 1000000; // Amount in lovelace (1 ADA = 1,000,000 lovelace)
-        const scriptAddress = './path_to_cardano_script'; // Path to your Cardano script
-        const signingKey = './path_to_signing_key'; // Path to your signing key
+        const electionData = req.body;
+        try {
+            const result = await createElectionOnCardano(electionData);
+            if (result.success) {
+            res.status(201).json({ message: result.message, policyId: result.policyId, assetName: result.assetName, newElection: newElection });
+            } else {
+            res.status(500).json({ message: result.message });
+            }
+        } catch (error) {
+            res.status(500).json({ message: 'Server error' });
+        }
 
-        cardano.buildTransaction(txIn, txOut, amount, scriptAddress);
-        cardano.signTransaction(signingKey);
-        cardano.submitTransaction();
-
-        res.status(201).json(newElection);
+        // res.status(201).json(newElection);
     } catch (err) {
         console.error(err.message);
         res.status(500).json({ message: 'Server error' });
@@ -111,7 +112,19 @@ const submitVote = async (req, res) => {
 
         await newVote.save();
 
-        res.status(201).json(newVote);
+        const voteData = req.body;
+        try {
+            const result = await submitVoteToCardano(voteData);
+            if (result.success) {
+            res.status(200).json({ message: result.message, newVote: newVote });
+            } else {
+            res.status(500).json({ message: result.message });
+            }
+        } catch (error) {
+            res.status(500).json({ message: 'Server error' });
+        }
+
+        // res.status(201).json(newVote);
     } catch (err) {
         console.error(err.message);
         res.status(500).json({ message: 'Server error' });

@@ -8,14 +8,17 @@ import { input } from '@nextui-org/react';
 import React from 'react';
 import axios from 'axios';
 import Link from 'next/link';
-import Router from 'next/router';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState('');
+    const router = useRouter();
 
+    // Email validation
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
     };
@@ -39,7 +42,7 @@ const LoginPage = () => {
     };
 
     
-
+    // Handle form submission
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setSubmitted(true);
@@ -59,9 +62,21 @@ const LoginPage = () => {
 
         try
         {
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, { email, password });
-            document.cookie = `jwt=${res.data.token}; path=/; max-age=86400;`;
-            Router.push('/dashboard');
+            const result = await signIn('credentials', {
+                email,
+                password,
+                redirect: false,
+            });
+
+            if (result?.error)
+            {
+                setError('Failed to login. Please try again.');
+                alert('Failed to login. Please try again.');
+            }
+            else
+            {
+                router.push('/');
+            }
         }
         catch (err)
         {
@@ -126,7 +141,7 @@ const LoginPage = () => {
                         </Button></Link>
                         <div className='flex flex-row justify-center'>
                             <p>Dont have an account? <Link href="/auth/register"><Button className='mx-2'>Register</Button></Link></p>
-                                <Link href="http://localhost:5000/auth/google">
+                                <Link href={`http://${process.env.NEXT_PUBLIC_API_URL}/auth/google`}>
                                     <Button className='flex items-center'>
                                         <Image src="/google-logo.webp" alt="Google Logo" width={20} height={20} className='mr-2' />
                                         Register with Google

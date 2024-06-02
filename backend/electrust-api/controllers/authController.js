@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken');
+const passport = require('passport');
+const User = require('../models/User');
 
 const register = async (req, res) => {
   try {

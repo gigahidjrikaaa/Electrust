@@ -13,6 +13,7 @@ const RegisterPage = () => {
     const router = useRouter();
 
     const [name, setName] = useState('');
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -36,8 +37,13 @@ const RegisterPage = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, { name, email, password });
-            router.push('/auth/login');
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, { name, username, email, password });
+            // if successful, return to login page
+            if (res.status === 200) {
+                router.push('/login');
+            } else {
+                alert('Registration failed');
+            }
           } catch (err) {
             console.error(err);
             alert('Registration failed');
