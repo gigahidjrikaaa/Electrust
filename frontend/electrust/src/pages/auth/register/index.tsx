@@ -6,7 +6,7 @@ import Footer from '@/components/footer';
 import { useState } from 'react';
 import { useUser } from '@/context/userContext';
 import { useRouter } from 'next/router';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 const RegisterPage = () => {
     const { setUser } = useUser();
@@ -39,15 +39,24 @@ const RegisterPage = () => {
         try {
             const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, { name, username, email, password });
             // if successful, return to login page
-            if (res.status === 200) {
-                router.push('/login');
-            } else {
-                alert('Registration failed');
+            if (res.status === 200 || res.status === 201) {
+                router.push('/auth/login');
             }
-          } catch (err) {
-            console.error(err);
-            alert('Registration failed');
-          }
+        } catch (err) {
+            const error = err as AxiosError;
+            if (error.response && (error.response.status === 400 || error.response.status === 500)) {
+                console.error(error.response);
+                console.log(error.response.status);
+                if (error.response.status === 400) {
+                    alert('User exists! Please login instead.');
+                } else {
+                    alert('Registration failed.');
+                }
+            } else {
+                console.error(error);
+                alert('An unexpected error occurred. Please try again later.');
+            }
+        }
     };
 
     return (
@@ -59,6 +68,10 @@ const RegisterPage = () => {
                     <div className='flex flex-col my-2'>
                         <label htmlFor="name">Name:</label>
                         <Input id="name" value={name} onChange={handleNameChange} />
+                    </div>
+                    <div className='flex flex-col my-2'>
+                        <label htmlFor="username">Username:</label>
+                        <Input id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
                     </div>
                     <div className='flex flex-col my-2'>
                         <label htmlFor="email">Email:</label>
