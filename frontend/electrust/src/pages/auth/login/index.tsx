@@ -78,7 +78,7 @@ const LoginPage = () => {
                     <Image src='/electrust-logo.svg' width={100} height={100} alt='Electrust Logo' className='w-1/2 mx-auto rounded-full' />
                 </div>
                 <div className='w-1/2'>
-                    <h1 className='text-4xl my-10 uppercase font-bold'>Login</h1>
+                    <h1 className='text-4xl my-10 uppercase font-bold font-russo-one'>Login</h1>
                     <form className='w-3/4'>
                         <div className='flex flex-col my-2'>
                             {/* <label htmlFor="email">Email:</label> */}
@@ -125,9 +125,13 @@ const LoginPage = () => {
                         </Button></Link>
                         <div className='flex flex-row justify-center'>
                             <p>Dont have an account? <Link href="/auth/register"><Button className='mx-2'>Register</Button></Link></p>
-                            <a href="http://localhost:5000/auth/google">
-                                <Image src="/google-logo.webp" alt="Instagram Logo" width={40} height={100} />
-                            </a>
+                                <Link href="http://localhost:5000/auth/google">
+                                    <Button className='flex items-center'>
+                                        <Image src="/google-logo.webp" alt="Google Logo" width={20} height={20} className='mr-2' />
+                                        Register with Google
+                                    </Button>
+                                </Link>
+                            
                         </div>
                         
                     </form>
