@@ -22,7 +22,28 @@ jobs:
       run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login --username "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
     - name: Build Docker image
-      run: docker build -t myimage:${{ github.sha }} .
+      run: docker build -t electrust-api:${{ github.sha }} .
 
     - name: Push Docker image
-      run: docker push myimage:${{ github.sha }}
+      run: docker push electrust-api:${{ github.sha }}
+
+    - name: SSH to VM and Update Repository
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.VM_HOST }}
+        username: ${{ secrets.VM_USERNAME }}
+        password: ${{ secrets.VM_PASSWORD }}
+        script: |
+          cd /home/electrust/Electrust/backend/electrust-api
+          git pull
+
+    - name: Restart Docker Container on VM
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.VM_HOST }}
+        username: ${{ secrets.VM_USERNAME }}
+        password: ${{ secrets.VM_PASSWORD }}
+        script: |
+          cd /home/electrust/Electrust/backend/electrust-api
+          docker-compose down
+          docker-compose up -d
