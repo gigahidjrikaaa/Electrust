@@ -1,6 +1,7 @@
 const Election = require('../models/Election');
 const Candidate = require('../models/Candidate');
 const User = require('../models/User');
+const Vote = require('../models/Vote');
 const cardano = require('../utils/cardano');
 
 const getElections = async (req, res) => {
@@ -41,8 +42,7 @@ const getCandidate = async (req, res) => {
     }
 };
 
-// CARDANO CLI COMMANDS
-const getElectionBlockchain = async (req, res) => {
+const createElection = async (req, res) => {
     try {
         const { title, description, startDate, endDate, candidates } = req.body;
 
@@ -57,7 +57,6 @@ const getElectionBlockchain = async (req, res) => {
         await newElection.save();
 
         // Interact with Cardano to register the election
-        // Build, sign, and submit the transaction
         const txIn = 'user-tx-in'; // REPLACE THIS
         const txOut = 'election-tx-out'; // REPLACE THIS
         const amount = 1000000; // Amount in lovelace (1 ADA = 1,000,000 lovelace)
@@ -74,6 +73,49 @@ const getElectionBlockchain = async (req, res) => {
     }
 };
 
-//! Implement other election-related controllers for Cardano blockchain here
+const updateElection = async (req, res) => {
+    try {
+        const election = await Election.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (!election) return res.status(404).json({ msg: 'Election not found' });
+        res.json(election);
+    } catch (err) {
+        res.status(500).send('Server error');
+    }
+};
 
-module.exports = { getElections, getElection, getCandidates, getCandidate, getElectionBlockchain };
+const deleteElection = async (req, res) => {
+    try {
+        const election = await Election.findByIdAndRemove(req.params.id);
+        if (!election) return res.status(404).json({ msg: 'Election not found' });
+        res.json({ msg: 'Election deleted' });
+    } catch (err) {
+        res.status(500).send('Server error');
+    }
+};
+
+const submitVote = async (req, res) => {
+    try {
+        const { candidateId } = req.body;
+        const userId = req.user.id;
+        const electionId = req.params.id;
+
+        // Ensure the user has not voted already
+        const existingVote = await Vote.findOne({ userId, electionId });
+        if (existingVote) return res.status(400).json({ msg: 'User has already voted in this election' });
+
+        const newVote = new Vote({
+            userId,
+            electionId,
+            candidateId
+        });
+
+        await newVote.save();
+
+        res.status(201).json(newVote);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
+module.exports = { getElections, getElection, getCandidates, getCandidate, createElection, updateElection, deleteElection, submitVote };
