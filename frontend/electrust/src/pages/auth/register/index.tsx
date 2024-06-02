@@ -47,7 +47,7 @@ const RegisterPage = () => {
         <div>
             <Navbar />
             <div className='flex flex-col text-center justify-center items-center h-screen'>
-                <h1 className='flex text-4xl uppercase my-10 font-bold'>Register</h1>
+                <h1 className='flex text-4xl uppercase my-10 font-bold font-russo-one'>Register</h1>
                 <form onSubmit={handleSubmit} className='w-1/2'>
                     <div className='flex flex-col my-2'>
                         <label htmlFor="name">Name:</label>
@@ -65,7 +65,7 @@ const RegisterPage = () => {
                         <label htmlFor="confirm-password">Confirm Password:</label>
                         <Input id="confirm-password" type='password' value={confirmPassword} onChange={handleConfirmPasswordChange} />
                     </div>
-                    <Button type='submit' className='my-5 hover:bg-gold w-full'>Register</Button>
+                    <Button type='submit' className='my-5 hover:bg-gold'>Register</Button>
                 </form>
             </div>
         </div>
