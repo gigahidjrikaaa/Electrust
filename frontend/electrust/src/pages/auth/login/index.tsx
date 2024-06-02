@@ -45,7 +45,7 @@ const LoginPage = () => {
     // Handle form submission
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setSubmitted(true);
+
         validateEmail(email);
 
         // if email and password are empty, return
@@ -135,15 +135,12 @@ const LoginPage = () => {
                                 <a href='#' className='text-blue-500'>Forgot password?</a>
                             </div>
                         </div>
-                        <Link href="/vote"><Button 
-                            className='my-5 hover:bg-gold w-full'
-                            >Login
-                        </Button></Link>
+                        <Button className='my-5 hover:bg-gold w-full font-bold' onClick={handleSubmit}>Login</Button>
                         <div className='flex flex-row justify-center'>
                             <p>Dont have an account? <Link href="/auth/register"><Button className='mx-2'>Register</Button></Link></p>
                                 <Link href={`http://${process.env.NEXT_PUBLIC_API_URL}/auth/google`}>
                                     <Button className='flex items-center'>
-                                        <Image src="/google-logo.webp" alt="Google Logo" width={20} height={20} className='mr-2' />
+                                        <Image src="/google-logo.webp" alt="Google Logo" width={30} height={30} className='mr-2 rounded-full' />
                                         Register with Google
                                     </Button>
                                 </Link>

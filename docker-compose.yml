@@ -14,7 +14,7 @@ services:
       context: ./backend/electrust-api
       dockerfile: Dockerfile
     ports:
-      - 8080:8080
+      - 5000:5000
 
   nginx:
     image: nginx:latest
