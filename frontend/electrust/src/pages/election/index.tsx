@@ -6,15 +6,10 @@ import ElectionCard from "@/components/election-card";
 
 export default function ElectionList() {
     const elections = [
-        { name: "Presidential Election", description: "Choose your president" },
-        { name: "Parliament Election", description: "Choose your parliament representatives" },
-        { name: "City Mayor Election", description: "Choose your city mayor" },
+        { name: "Presidential Election", description: "Choose your president of the Republic of Indonesia for the 2024 - 2029 period.", electionID: "1", imageURL: "/election.webp"},
+        { name: "Parliament Election", description: "Choose your Indonesian parliament representatives. This election is for the DPR.", electionID: "2", imageURL: "/election.webp"},
+        { name: "City Mayor Election", description: "Choose your city mayor.", electionID: "3", imageURL: "/election.webp"},
     ];
-
-    // Dummy onSelect function
-    const handleElectionSelect = () => {
-        
-    };
 
     return (
         <div>
@@ -28,7 +23,8 @@ export default function ElectionList() {
                                 key={index} 
                                 name={election.name} 
                                 description={election.description} 
-                                onSelect={handleElectionSelect} // Pass onSelect prop
+                                electionID={election.electionID}
+                                imageURL={election.imageURL}
                             />
                         ))}
                     </div>

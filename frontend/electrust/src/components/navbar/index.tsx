@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
                     {/* <button className='hover:bg-yaleBlue w-full'>Sign In</button> */}
                 </div>
                 <div className="flex w-full text-wrap">
-                    <Link className="hover:bg-yaleBlue w-full transition-all flex" href="/vote">
+                    <Link className="hover:bg-yaleBlue w-full transition-all flex" href="/election">
                         <button className='hover:bg-yaleBlue w-full transition-all'>Vote</button>
                     </Link>
                     {/* <button className='hover:bg-yaleBlue w-full'>Sign In</button> */}
