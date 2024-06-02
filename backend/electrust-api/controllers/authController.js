@@ -1,45 +1,44 @@
 const jwt = require('jsonwebtoken');
-const passport = require('passport');
 
 const register = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, username, email, password, role } = req.body;
 
     // Check if fields are empty
-    if (!name || !email || !password) return res.status(400).json({ msg: 'Please enter all fields' });
+    if (!name || !username || !email || !password) return res.status(400).json({ msg: 'Please enter all fields' });
 
     console.log('Trying to register user...');
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ $or: [{ email }, { username }] });
     console.log('Checking if user exists...');
     if (existingUser) return res.status(400).json({ msg: 'User already exists' });
 
-    const user = new User({ name, email, password });
-    const salt = await bcrypt.genSalt(10);
-    user.password = await bcrypt.hash(password, salt);
+    const user = new User({ name, username, email, password, role });
     console.log('Saving user...');
     await user.save();
+    console.log('User saved!');
+    res.status(201).json({ msg: 'User registered' });
 
-    const payload = { user: { id: user.id } };
-    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
-    res.cookie('jwt', token, { httpOnly: true }).status(201).json({ token });
   } catch (err) {
     res.status(500).send('Server error. Modar');
   }
 };
 
-const login = (req, res, next) => {
-  passport.authenticate('local', { session: false }, (err, user, info) => {
-    if (err || !user) return res.status(400).json({ msg: 'Invalid credentials' });
-
-    req.login(user, (err) => {
-        if (err) return res.status(400).json({ msg: 'Invalid credentials' });
-
-        const payload = { user: { id: user.id } };
-        const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.cookie('jwt', token, { httpOnly: true }).json({ token });
-    });
-
-  })(req, res, next);
+const login = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
+    const isMatch = await user.matchPassword(password);
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
+    const token = jwt.sign({ _id: user._id, role: user.role }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
+    res.json({ token });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 };
 
 const googleLogin = passport.authenticate('google', { scope: ['profile', 'email'] });
