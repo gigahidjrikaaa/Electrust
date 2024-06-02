@@ -17,6 +17,15 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: '20'
+    
+    - name: Print Environment Variables
+      run: |
+        echo "SERVER_HOST: $SERVER_HOST"
+        echo "SERVER_USERNAME: $SERVER_USERNAME"
+        echo "SERVER_PASSWORD: $SERVER_PASSWORD"
+        echo "SERVER_PORT: $SERVER_PORT"
+        echo "DOCKER_PASSWORD: $DOCKER_PASSWORD"
+        echo "DOCKER_USERNAME: $DOCKER_USERNAME"
 
     - name: SSH to VM and Update Repository
       uses: appleboy/ssh-action@master
