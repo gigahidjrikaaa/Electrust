@@ -1,18 +1,34 @@
 "use client"
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@nextui-org/modal";
-import React, { useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Link } from "@nextui-org/link";
 import { Divider } from "@nextui-org/divider";
 import { Image } from "@nextui-org/image";
 import { useDisclosure } from "@nextui-org/react";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { Button } from "@nextui-org/button";
 
 export default function ElectionCard({ name, description, electionID, imageURL }: { name: string, description: string, electionID: string, imageURL: string}) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure()
+    const router = useRouter();
 
     const handleCardClick = () => {
         onOpen();
         // alert("You clicked the card!")
+    };
+
+    const redirectToVotePage = () => {
+        axios.post(`${process.env.NEXT_PUBLIC_API_URL}/vote/${electionID}`)
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+
+        router.push(`/election/${electionID}`);
     };
 
     return (
@@ -34,20 +50,19 @@ export default function ElectionCard({ name, description, electionID, imageURL }
                 isPressable={true}
             >
                 <CardHeader className="flex flex-row justify-center align-middle">
-                    <h2 className="flex flex-row text-center justify-center align-middle p-2 font-bold font-russo-one text-2xl">{name}</h2>
+                    <h1 className="flex flex-row text-center justify-center align-middle p-1 font-bold font-russo-one text-2xl">{name}</h1>
                 </CardHeader>
                 <Divider />
                 <CardBody className="flex flex-row justify-center align-top py-5">
                     <div className="w-1/2 justify-center align-middle items-center flex">
                         <Image src={imageURL} alt="Election" width={200} height={200} />
                     </div>
-                    <div className="w-1/2 text-lg">
+                    <div className="w-1/2 text-lg pr-5">
                         <p className="">{description}</p>
                     </div>
                 </CardBody>
-                <Divider />
                 <CardFooter className="flex flex-row justify-center align-middle">
-                    <Link href={`/election/${electionID}`} className="flex flex-row justify-center align-middle p-2 font-bold font-russo-one text-xl">View Election</Link>
+                    <Button onClick={redirectToVotePage} color="primary" className="w-full py-6 font-bold font-russo-one text-xl mx-4 mb-2" >View Election</Button>
                 </CardFooter>
             </Card>
             
