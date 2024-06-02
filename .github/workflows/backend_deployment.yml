@@ -19,16 +19,19 @@ jobs:
         node-version: '20'
 
     - name: Log in to Docker Hub
+      shell: bash
       env:
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       run: echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
 
     - name: Build Docker image
-      run: docker build -t electrust-api:${{ github.sha }} .
+      shell: bash
+      run: docker build -t electrust-api .
 
     - name: Push Docker image
-      run: docker push electrust-api:${{ github.sha }}
+      shell: bash
+      run: docker push electrust-api
 
     - name: SSH to VM and Update Repository
       uses: appleboy/ssh-action@master
