@@ -18,14 +18,6 @@ jobs:
       with:
         node-version: '20'
 
-    - name: Log in to Docker Hub
-      shell: bash
-      env:
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      run: |
-        echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
-
     - name: SSH to VM and Update Repository
       uses: appleboy/ssh-action@master
       with:
@@ -35,6 +27,14 @@ jobs:
         script: |
           cd /home/electrust/Electrust/backend/electrust-api
           git pull
+
+    - name: Log in to Docker Hub
+      shell: bash
+      env:
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      run: |
+        echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
 
     - name: Build Docker image
       shell: bash
