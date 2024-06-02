@@ -2,6 +2,7 @@
 import { Button } from '@nextui-org/button';
 import { Input } from '@nextui-org/input';
 import Navbar from '@/components/navbar';
+import Footer from '@/components/footer';
 import { useState } from 'react';
 import { useUser } from '@/context/userContext';
 import { useRouter } from 'next/router';
@@ -68,6 +69,7 @@ const RegisterPage = () => {
                     <Button type='submit' className='my-5 hover:bg-gold'>Register</Button>
                 </form>
             </div>
+            <Footer />
         </div>
     );
 };
